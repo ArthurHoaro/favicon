@@ -110,9 +110,13 @@ class Favicon
             switch ($status) {
                 case '301':
                 case '302':
-                    $url = isset($headers['location']) ? $headers['location'] : '';
-                    if (is_array($url)) {
-                        $url = end($url);
+                    if (isset($headers['location'])) {
+                        $url = $headers['location'];
+                        if (is_array($url)) {
+                            $url = end($url);
+                        }
+                    } else {
+                        return false;
                     }
                     break;
                 default:
