@@ -13,7 +13,7 @@ Here are the changes you can see in this version:
 Requirements
 ------------
 
-- [PHP 5.6](http://php.net/)
+- [PHP 8.0+](http://php.net/) (you can use v1.x for PHP 5.6+)
 - [php-xml](http://php.net/manual/fr/refs.xml.php) extension: parse HTML content
 - [php-fileinfo](http://php.net/manual/fr/book.fileinfo.php) extension: check image type
 
@@ -23,7 +23,7 @@ Composer
 Use [Composer](https://getcomposer.org) by adding the following lines in your `composer.json`:
 
     "require": {
-        "arthurhoaro/favicon": "~1.0"
+        "arthurhoaro/favicon": "~2.0"
     }
 
 Basic Usage
