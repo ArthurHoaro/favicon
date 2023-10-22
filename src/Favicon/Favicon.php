@@ -155,6 +155,7 @@ class Favicon
         // Get the base URL without the path for clearer concatenations.
         $url = rtrim($this->baseUrl($this->url, true), '/');
         $original = $url;
+
         if (
             ($favicon = $this->checkCache($original, self::$TYPE_CACHE_URL)) === false
             && ! $favicon = $this->getFavicon($original, false)
@@ -212,7 +213,12 @@ class Favicon
 
         // Make sure the favicon is an absolute URL.
         if ($favicon && filter_var($favicon, FILTER_VALIDATE_URL) === false) {
-            $favicon = rtrim($url, '/') . '/' . ltrim($favicon, '/');
+            // Make sure that favicons starting with "/" get concatenated with host instead of full URL
+            if($favicon[0] === '/') {
+                $favicon = $this->baseUrl($url) . ltrim($favicon, '/');
+            } else {
+                $favicon = rtrim($url, '/') . '/' . ltrim($favicon, '/');
+            }
         }
 
         // Sometimes people lie, so check the status.
