@@ -97,7 +97,7 @@ class Favicon
         $loop = true;
         while ($loop && $max_loop-- > 0) {
             $headers = $this->dataAccess->retrieveHeader($url);
-            if (empty($headers) || !array_key_exists(0, $headers)) {
+            if (empty($headers) || !is_array($headers) || !array_key_exists(0, $headers)) {
                 return false;
             }
             $exploded = explode(' ', $headers[0]);
@@ -152,7 +152,6 @@ class Favicon
             $this->url = $url;
         }
 
-        // Get the base URL without the path for clearer concatenations.
         $url = rtrim($this->baseUrl($this->url, true), '/');
         $original = $url;
 
@@ -214,7 +213,7 @@ class Favicon
         // Make sure the favicon is an absolute URL.
         if ($favicon && filter_var($favicon, FILTER_VALIDATE_URL) === false) {
             // Make sure that favicons starting with "/" get concatenated with host instead of full URL
-            if($favicon[0] === '/') {
+            if ($favicon[0] === '/') {
                 $favicon = $this->baseUrl($url) . ltrim($favicon, '/');
             } else {
                 $favicon = rtrim($url, '/') . '/' . ltrim($favicon, '/');
@@ -408,7 +407,7 @@ class Favicon
     }
 
     /**
-     * @param DataAccess|\PHPUnit_Framework_MockObject_MockObject $dataAccess
+     * @param DataAccess $dataAccess
      */
     public function setDataAccess($dataAccess)
     {
