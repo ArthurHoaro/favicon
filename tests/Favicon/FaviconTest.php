@@ -1,4 +1,5 @@
 <?php
+
 namespace Favicon;
 
 use PHPUnit\Framework\TestCase;
@@ -199,7 +200,7 @@ class FaviconTest extends TestCase
         $this->assertEquals($urlRedirect, $res['url']);
         $this->assertEquals('200', $res['status']);
     }
-    
+
     /**
     * @covers Favicon::info
     * @uses Favicon
@@ -230,8 +231,8 @@ class FaviconTest extends TestCase
         $this->assertEquals($urlRedirect2, $res['url']);
         $this->assertEquals('200', $res['status']);
     }
-    
-    
+
+
     /**
     * @covers Favicon::info
     * @uses Favicon
@@ -259,7 +260,7 @@ class FaviconTest extends TestCase
         $this->assertEquals($urlRedirect2, $res['url']);
         $this->assertEquals('302', $res['status']);
     }
-    
+
     /**
     * @covers Favicon::info
     * @uses Favicon
@@ -329,7 +330,7 @@ class FaviconTest extends TestCase
             ->will($this->returnCallback([$this, 'contentExistingFav']));
         $this->assertEquals(self::slash($url . $path) . self::TEST_LOGO_NAME, $fav->get());
     }
-   
+
     /**
     * @covers Favicon::get
     * @uses Favicon
@@ -660,7 +661,7 @@ class FaviconTest extends TestCase
         }
         return $xml;
     }
-    
+
     /**
      * Callback function for contentExistingFav in testGetExistingRootFavicon
      * return valid header, or icon file content if url contain '.ico'.
