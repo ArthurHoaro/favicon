@@ -152,14 +152,14 @@ class Favicon
             $this->url = $url;
         }
 
-        $url = rtrim($this->baseUrl($this->url, true), '/');
+        $url = rtrim(self::baseUrl($this->url, true), '/');
         $original = $url;
 
         if (
             ($favicon = $this->checkCache($original, self::$TYPE_CACHE_URL)) === false
             && ! $favicon = $this->getFavicon($original, false)
         ) {
-            $url = rtrim($this->endRedirect($this->baseUrl($this->url, false)), '/');
+            $url = rtrim($this->endRedirect(self::baseUrl($this->url, false)), '/');
             if (
                 ($favicon = $this->checkCache($url, self::$TYPE_CACHE_URL)) === false
                 && ! $favicon = $this->getFavicon($url)
@@ -214,7 +214,7 @@ class Favicon
         if ($favicon && filter_var($favicon, FILTER_VALIDATE_URL) === false) {
             // Make sure that favicons starting with "/" get concatenated with host instead of full URL
             if ($favicon[0] === '/') {
-                $favicon = $this->baseUrl($url) . ltrim($favicon, '/');
+                $favicon = self::baseUrl($url) . ltrim($favicon, '/');
             } else {
                 $favicon = rtrim($url, '/') . '/' . ltrim($favicon, '/');
             }
