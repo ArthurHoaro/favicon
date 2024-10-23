@@ -106,11 +106,11 @@ class FaviconTest extends TestCase
         $invalidPrefixUrl = 'ftp://domain.tld';
         $emptyUrl = '';
 
-        $this->assertEquals(false, $fav->baseUrl($notAnUrl));
-        $this->assertEquals(false, $fav->baseUrl($notPrefixedUrl));
-        $this->assertEquals(false, $fav->baseUrl($noHostUrl));
-        $this->assertEquals(false, $fav->baseUrl($invalidPrefixUrl));
-        $this->assertEquals(false, $fav->baseUrl($emptyUrl));
+        $this->assertEquals(false, $fav::baseUrl($notAnUrl));
+        $this->assertEquals(false, $fav::baseUrl($notPrefixedUrl));
+        $this->assertEquals(false, $fav::baseUrl($noHostUrl));
+        $this->assertEquals(false, $fav::baseUrl($invalidPrefixUrl));
+        $this->assertEquals(false, $fav::baseUrl($emptyUrl));
     }
 
     /**
@@ -130,15 +130,15 @@ class FaviconTest extends TestCase
         $urlWithUnusedInfo = 'http://domain.tld/index.php?foo=bar&bar=foo#foobar';
         $urlWithPath = 'http://domain.tld/my/super/path';
 
-        $this->assertEquals(self::slash($simpleUrl), $fav->baseUrl($simpleUrl));
-        $this->assertEquals(self::slash($simpleHttpsUrl), $fav->baseUrl($simpleHttpsUrl));
-        $this->assertEquals(self::slash($simpleUrlWithTraillingSlash), $fav->baseUrl($simpleUrlWithTraillingSlash));
-        $this->assertEquals(self::slash($simpleWithPort), $fav->baseUrl($simpleWithPort));
-        $this->assertEquals(self::slash($userWithoutPasswordUrl), $fav->baseUrl($userWithoutPasswordUrl));
-        $this->assertEquals(self::slash($userPasswordUrl), $fav->baseUrl($userPasswordUrl));
-        $this->assertEquals(self::slash($simpleUrl), $fav->baseUrl($urlWithUnusedInfo));
-        $this->assertEquals(self::slash($simpleUrl), $fav->baseUrl($urlWithPath, false));
-        $this->assertEquals(self::slash($urlWithPath), $fav->baseUrl($urlWithPath, true));
+        $this->assertEquals(self::slash($simpleUrl), $fav::baseUrl($simpleUrl));
+        $this->assertEquals(self::slash($simpleHttpsUrl), $fav::baseUrl($simpleHttpsUrl));
+        $this->assertEquals(self::slash($simpleUrlWithTraillingSlash), $fav::baseUrl($simpleUrlWithTraillingSlash));
+        $this->assertEquals(self::slash($simpleWithPort), $fav::baseUrl($simpleWithPort));
+        $this->assertEquals(self::slash($userWithoutPasswordUrl), $fav::baseUrl($userWithoutPasswordUrl));
+        $this->assertEquals(self::slash($userPasswordUrl), $fav::baseUrl($userPasswordUrl));
+        $this->assertEquals(self::slash($simpleUrl), $fav::baseUrl($urlWithUnusedInfo));
+        $this->assertEquals(self::slash($simpleUrl), $fav::baseUrl($urlWithPath, false));
+        $this->assertEquals(self::slash($urlWithPath), $fav::baseUrl($urlWithPath, true));
     }
 
     /**
